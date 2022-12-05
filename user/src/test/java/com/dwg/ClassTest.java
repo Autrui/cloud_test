@@ -3,11 +3,15 @@ package com.dwg;
 
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.InjectionConfig;
+import com.baomidou.mybatisplus.generator.config.OutputFile;
+import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.junit.jupiter.api.Test;
+
+import java.util.Collections;
+import java.util.function.Consumer;
 
 public class ClassTest {
     private String projectPath = System.getProperty("user.dir");
@@ -25,23 +29,6 @@ public class ClassTest {
 
     @Test
     public void test() {
-        List<FileOutConfig> focList = new ArrayList<>();
-        // 自定义配置会被优先输出
-        focList.add(new FileOutConfig(templatePath) {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
-            }
-        });
-        InjectionConfig cfg = new InjectionConfig() {
-            @Override
-            public void initMap() {
-                // to do nothing
-            }
-        };
-        cfg.setFileOutConfigList(focList);
-        mpg.setCfg(cfg);
 
         FastAutoGenerator.create(DATA_SOURCE_CONFIG)
                 // 全局配置
@@ -55,11 +42,13 @@ public class ClassTest {
                 // 包配置
                 .packageConfig(builder -> {
                     builder.parent("com.dwg")
+                            // .moduleName("")
                             .controller("controller")
                             .entity("entity")
                             .service("service")
+                            .serviceImpl("service.serviceImpl")
                             .mapper("mapper")
-                            .xml("mapper.");
+                            .pathInfo(Collections.singletonMap(OutputFile.xml,projectPath+"/src/main/resources/mapper"));
                 })
                 // 策略配置
                 .strategyConfig(builder -> {
@@ -68,13 +57,23 @@ public class ClassTest {
                             .addTablePrefix("tb_") // 设置过滤表前缀
                             .serviceBuilder() // 开启service策略配置
                             .formatServiceFileName("%sService") // 取消Service前的I
+                            .formatServiceImplFileName("%sServiceImpl")
                             .controllerBuilder() // 开启controller策略配置
                             .enableRestStyle() // 配置restful风格
                             .enableHyphenStyle() // url中驼峰转连字符
                             .entityBuilder() // 开启实体类配置
                             .enableLombok() // 开启lombok
+                            .logicDeleteColumnName("deleted") //说明删除逻辑是哪个字段
+                            .enableTableFieldAnnotation() // 属性加上说明注解
                             .enableChainModel() // 开启lombok链式操作
                             .enableRemoveIsPrefix(); // 开启 Boolean 类型字段移除 is 前缀
+                })
+                .templateConfig(new Consumer<TemplateConfig.Builder>() {
+                    @Override
+                    public void accept(TemplateConfig.Builder builder) {
+                        // 实体类使用我们自定义模板
+                        builder.entity("templates/MyEntity.java");
+                    }
                 })
                 .templateEngine(new FreemarkerTemplateEngine())
                 .execute();
