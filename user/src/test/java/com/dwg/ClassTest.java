@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.function.Consumer;
 
 public class ClassTest {
-    private String projectPath = System.getProperty("user.dir");
+    private final String projectPath = System.getProperty("user.dir");
     private static final DataSourceConfig.Builder DATA_SOURCE_CONFIG =
             new DataSourceConfig.Builder(
                     "jdbc:mysql://localhost:3306/lc_user?useUnicode=true&characterEncoding=UTF-8",
