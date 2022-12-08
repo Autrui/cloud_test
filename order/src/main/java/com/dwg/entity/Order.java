@@ -47,5 +47,4 @@ public class Order implements Serializable {
     @TableField("num")
     private Integer num;
 
-
 }

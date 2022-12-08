@@ -2,6 +2,7 @@ package com.dwg.mapper;
 
 import com.dwg.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -9,7 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author Autrui
- * @since 2022-12-05
+ * @since 2022-12-07
  */
 public interface UserMapper extends BaseMapper<User> {
 

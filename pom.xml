@@ -8,12 +8,13 @@
     <modules>
         <module>user</module>
         <module>order</module>
+        <module>feign</module>
     </modules>
 
     <packaging>pom</packaging>
 
     <name>cloud_test</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/Autrui/cloud_test</url>
     <description>Spring Cloud微服务系统demo</description>
 
     <properties>
@@ -26,10 +27,12 @@
         <spring-boot.version>2.6.11</spring-boot.version>
         <spring-cloud.version>2021.0.4</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.0.4.0</spring-cloud-alibaba.version>
-        <lombok.version>1.18.8</lombok.version>
         <alibaba.nacos.version>2.0.4</alibaba.nacos.version>
         <freemarker.version>2.3.31</freemarker.version>
         <swagger.version>1.6.2</swagger.version>
+        <lombok.version>1.18.8</lombok.version>
+        <feign.version>3.1.5</feign.version>
+        <loadbalance.version>3.1.4</loadbalance.version>
     </properties>
 
     <dependencyManagement>
@@ -122,6 +125,21 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
+
+            <!-- OpenFeign -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${feign.version}</version>
+            </dependency>
+
+            <!-- spring-cloud-starter-loadbalancer -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+                <version>${loadbalance.version}</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
