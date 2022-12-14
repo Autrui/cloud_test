@@ -11,3 +11,6 @@ spring:
     loadbalancer:
       nacos:
         enabled: true
+logging:
+  level:
+    com.dwg: debug

@@ -1,15 +1,13 @@
 package com.dwg.service;
 
-import com.dwg.entity.Order;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dwg.entity.Order;
 import com.dwg.entity.vo.OrderVO;
 import com.dwg.pojo.User;
 
-import java.util.List;
-
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author Autrui

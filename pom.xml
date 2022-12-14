@@ -9,8 +9,10 @@
         <module>user</module>
         <module>order</module>
         <module>feign</module>
+        <module>gateway</module>
     </modules>
 
+    <!-- 父工程打包模式必须为pom -->
     <packaging>pom</packaging>
 
     <name>cloud_test</name>
@@ -31,7 +33,7 @@
         <freemarker.version>2.3.31</freemarker.version>
         <swagger.version>1.6.2</swagger.version>
         <lombok.version>1.18.8</lombok.version>
-        <feign.version>3.1.5</feign.version>
+        <openfeign.version>3.1.5</openfeign.version>
         <loadbalance.version>3.1.4</loadbalance.version>
     </properties>
 
@@ -60,12 +62,6 @@
                 <groupId>com.alibaba.nacos</groupId>
                 <artifactId>nacos-client</artifactId>
                 <version>${alibaba.nacos.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
             </dependency>
 
             <!-- SpringBoot 依赖配置 -->
@@ -130,7 +126,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-openfeign</artifactId>
-                <version>${feign.version}</version>
+                <version>${openfeign.version}</version>
             </dependency>
 
             <!-- spring-cloud-starter-loadbalancer -->

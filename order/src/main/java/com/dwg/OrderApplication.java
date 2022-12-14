@@ -1,7 +1,6 @@
 package com.dwg;
 
 import com.dwg.clients.UserClient;
-import com.dwg.config.DefaultFeignConfiguration;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +11,9 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @MapperScan("com.dwg.mapper")
-@EnableFeignClients(clients = UserClient.class, defaultConfiguration = DefaultFeignConfiguration.class)
+// 全局FeignClient设置
+//@EnableFeignClients(clients = {UserClient.class}, defaultConfiguration = DefaultFeignConfiguration.class)
+@EnableFeignClients(clients = {UserClient.class})
 public class OrderApplication {
 
     public static void main(String[] args) {
@@ -21,7 +22,6 @@ public class OrderApplication {
 
     /**
      * 创建RestTemplate并注入Spring容器
-     *
      */
     @Bean
     @LoadBalanced

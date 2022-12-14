@@ -3,14 +3,12 @@ package com.dwg;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
-import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.junit.Test;
 
 import java.util.Collections;
-import java.util.function.Consumer;
 
 public class MybatisPlusGeneratorTest {
     private final String projectPath = System.getProperty("user.dir");
@@ -62,12 +60,9 @@ public class MybatisPlusGeneratorTest {
                             .enableChainModel() // 开启lombok链式操作
                             .enableRemoveIsPrefix(); // 开启 Boolean 类型字段移除 is 前缀
                 })
-                .templateConfig(new Consumer<TemplateConfig.Builder>() {
-                    @Override
-                    public void accept(TemplateConfig.Builder builder) {
-                        // 实体类使用我们自定义模板
-                        builder.entity("templates/MyEntity.java");
-                    }
+                .templateConfig(builder -> {
+                    // 实体类使用我们自定义模板
+                    builder.entity("templates/MyEntity.java");
                 })
                 .templateEngine(new FreemarkerTemplateEngine())
                 .execute();
