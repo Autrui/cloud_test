@@ -1,0 +1,45 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: order
+  profiles:
+    active: dev # 环境
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+#      config:
+#        namespace: f46302e3-f087-47a2-83a0-4b0484d5367b
+#        group: dev
+#        file-extension: yaml
+#      discovery:
+#        namespace: f46302e3-f087-47a2-83a0-4b0484d5367b
+#        group: learn
+  config:
+    import:
+      - optional:nacos:order.yaml
+
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/lc_order?useUnicode=true&characterEncoding=UTF-8
+#    username: root
+#    password: 123456
+#spring:
+#  cloud:
+#    loadbalancer:
+#      nacos:
+#        enabled: true
+#
+#feign:
+#  httpclient:
+#    enabled: true # 支持HttpClient的开关
+#    max-connections: 200 # 最大连接数
+#    max-connections-per-route: 50 # 单个路径的最大连接数
+##  client:
+##    config:
+##      default:
+##        logger-level: full
+#logging:
+#  level:
+#    com.dwg: debug
