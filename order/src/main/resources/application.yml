@@ -4,21 +4,20 @@ server:
 spring:
   application:
     name: order
-  profiles:
-    active: dev # 环境
+#  profiles:
+#    active: dev # 环境
   cloud:
     nacos:
       server-addr: localhost:8848
-#      config:
-#        namespace: f46302e3-f087-47a2-83a0-4b0484d5367b
-#        group: dev
-#        file-extension: yaml
-#      discovery:
-#        namespace: f46302e3-f087-47a2-83a0-4b0484d5367b
-#        group: learn
+      config:
+        namespace: f46302e3-f087-47a2-83a0-4b0484d5367b
+        group: dev
+      discovery:
+        namespace: f46302e3-f087-47a2-83a0-4b0484d5367b
+        group: kon
   config:
     import:
-      - optional:nacos:order.yaml
+      - optional:nacos:order-dev.yaml
 
 #  datasource:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
