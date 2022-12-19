@@ -22,10 +22,13 @@ public class MybatisPlusGeneratorTest {
 
     @Test
     public void Generator() {
-        FastAutoGenerator.create(DATA_SOURCE_CONFIG)
+        FastAutoGenerator
+                .create(DATA_SOURCE_CONFIG)
                 // 全局配置
                 .globalConfig(builder -> {
-                    builder.author("Autrui")
+                    System.out.println("全局配置");
+                    builder
+                            .author("Autrui")
                             .disableOpenDir()
                             .enableSwagger()
                             .outputDir(projectPath + "/src/main/java")
@@ -33,7 +36,9 @@ public class MybatisPlusGeneratorTest {
                 })
                 // 包配置
                 .packageConfig(builder -> {
-                    builder.parent("com.dwg")
+                    System.out.println("包配置");
+                    builder
+                            .parent("com.dwg")
                             // .moduleName("")
                             .controller("controller")
                             .entity("entity")
@@ -44,6 +49,7 @@ public class MybatisPlusGeneratorTest {
                 })
                 // 策略配置
                 .strategyConfig(builder -> {
+                    System.out.println("策略配置");
                     builder
                             .addInclude("tb_order") // 设置需要生成的表名
                             .addTablePrefix("tb_") // 设置过滤表前缀
@@ -60,10 +66,10 @@ public class MybatisPlusGeneratorTest {
                             .enableChainModel() // 开启lombok链式操作
                             .enableRemoveIsPrefix(); // 开启 Boolean 类型字段移除 is 前缀
                 })
-                .templateConfig(builder -> {
-                    // 实体类使用我们自定义模板
-                    builder.entity("templates/MyEntity.java");
-                })
+                .templateConfig(builder ->
+                        // 实体类使用我们自定义模板
+                        builder.entity("templates/MyEntity.java")
+                )
                 .templateEngine(new FreemarkerTemplateEngine())
                 .execute();
     }
