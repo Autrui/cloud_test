@@ -10,6 +10,7 @@
         <module>order</module>
         <module>feign</module>
         <module>gateway</module>
+        <module>message</module>
     </modules>
 
     <!-- 父工程打包模式必须为pom -->

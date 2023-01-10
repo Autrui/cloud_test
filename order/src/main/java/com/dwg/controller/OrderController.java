@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 /**
  * <p>
@@ -45,12 +46,8 @@ public class OrderController {
         map.put("1", "2");
         map.put("2", "2");
         map.put("3", "2");
-        map.forEach(
-                (k, v) -> {
-                    System.out.println("key=" + k + "    value=" + v);
-                }
-        );
-
+        map.forEach((k, v) -> System.out.println("key=" + k + "    value=" + v));
+        //map.forEach(BiConsumer);
         for (Map.Entry<String, String> entry : map.entrySet()) {
             System.out.println("key=" + entry.getKey() + "    value=" + entry.getValue());
         }

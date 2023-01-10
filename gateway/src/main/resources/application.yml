@@ -4,11 +4,14 @@ server:
 spring:
   application:
     name: gateway
-  profiles:
-    active: dev # 环境
+#  profiles:
+#    active: dev # 环境
   cloud:
     nacos:
       server-addr: localhost:8848 # nacos地址
+      discovery:
+        namespace: f46302e3-f087-47a2-83a0-4b0484d5367b
+        group: kon
     gateway:
       routes:
         - id: user                # 路由唯一标识
